@@ -37,7 +37,7 @@ module Songkickr
   #
   # http://www.songkick.com/developer/artist-search
   class Event
-    attr_accessor :popularity, :type, :display_name, :location, :start, :uri, :id, :lat, :lng, :performances, :status, :venue, :tickets_uri
+    attr_accessor :popularity, :type, :display_name, :location, :start, :start_time, :uri, :id, :lat, :lng, :performances, :status, :venue, :tickets_uri
     
     def initialize(event_hash)
       @popularity   = event_hash["popularity"]
@@ -47,6 +47,7 @@ module Songkickr
       @display_name = event_hash["displayName"]
       @venue        = Songkickr::Venue.new event_hash["venue"]
       @start        = start_hash_to_datetime event_hash["start"]
+      @start_time   = event_hash["start"]["time"]
       @uri          = event_hash["uri"]
       @performances = parse_performance event_hash["performance"]
       @id           = event_hash["id"]
