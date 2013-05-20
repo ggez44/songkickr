@@ -150,6 +150,21 @@ module Songkickr
       Songkickr::ArtistResult.new result
     end
 
+    # ==== Venue Events (Upcoming)
+    # Returns an array of Events.
+    #
+    # === Parameters
+    # * +venue_id+ - Songkick unique ID for venues. 
+    # * +query+ - A hash of query parameters, see below for options.
+    #
+    # ==== Query Parameters
+    # * +page+ - Page number
+    # * +per_page+ - Number of results per page, max 50.
+    def venue_events(venue_id, query = {})
+      result = get("/venues/#{venue_id}/calendar.json", :query => query)
+      Songkickr::EventResult.new result
+    end
+
     # ==== Metro Area Events (Upcoming)
     # Returns an array of Events.
     #
