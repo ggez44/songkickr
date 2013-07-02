@@ -113,6 +113,16 @@ module Songkickr
       Songkickr::EventResult.new result
     end
 
+    # === Similar Artists
+    # Returns an array of Artists.
+    # http://www.songkick.com/developer/similar-artists
+    # === Paramters
+    # * +artist_id+ - Songkick unique ID for artist.
+    def similar_artists(artist_id)
+      result = get("/artists/#{artist_id}/similar_artists.json")
+      Songkickr::ArtistResult.new result
+    end
+
     # ==== User Events API
     # http://www.songkick.com/developer/upcoming-events-for-user
     #
